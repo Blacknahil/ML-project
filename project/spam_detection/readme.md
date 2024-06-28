@@ -51,11 +51,16 @@ This project is a simple web application for detecting spam messages using a mac
         ```bash
         pip install pandas
 
-## How to run our program?
+# How to run our program?
 
-# Go to the correct path which is spam_detection and run app.py
+1. Go to the correct path which is spam_detection and run app.py
 
-```bash
-cd project/spam_detection
-python3 app.py
+    ```bash
+        cd project/spam_detection
+        python3 app.py
 
+2. Open a web browser and enetr the Url printed on the terminal when running the app.py. This url is Usually
+     ```
+        http://127.0.0.1:5000
+
+    But to avoid any trouble check out the terminal.
