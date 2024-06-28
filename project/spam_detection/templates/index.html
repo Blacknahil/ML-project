@@ -1,0 +1,122 @@
+<!-- templates/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spam Detection</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 2em;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 1em;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 1em;
+            font-size: 1.2em;
+            transition: all 0.3s ease-in-out;
+            transform-style: preserve-3d;
+        }
+        .card {
+            perspective: 1000px;
+            background-color:black;
+        }
+        .card-content {
+            position: relative;
+            width: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+        .card-content.show-back {
+            transform: rotateY(180deg);
+        }
+        .card-face {
+            position: absolute;
+            width: 100%;
+            backface-visibility: hidden;
+            padding: 20px;
+            box-sizing: border-box;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-face.back {
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Spam Detection</h1>
+        <form id="spam-form" action="/predict" method="post">
+            <label for="message">Enter your message:</label>
+            <textarea id="message" name="message" rows="4" cols="50"></textarea>
+            <br><br>
+            <input type="submit" value="Check">
+        </form>
+        <div id="result" class="card">
+            <div class="card-content">
+                <div class="card-face front">
+                    <p>Please enter a message to check if it's spam or ham.</p>
+                </div>
+                <div class="card-face back">
+                    <p id="prediction-result"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector('form').onsubmit = async function (event) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: formData
+            });
+            const result = await response.json();
+            const resultElement = document.getElementById('result');
+            const resultContent = document.querySelector('.card-content');
+            const predictionElement = document.getElementById('prediction-result');
+
+            predictionElement.innerHTML = `Prediction: ${result.prediction} <br> Probability: ${result.probability}`;
+            resultContent.classList.add('show-back');
+        };
+    </script>
+</body>
+</html>
