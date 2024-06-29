@@ -25,7 +25,7 @@ def predict():
     
     result={
         'prediction':'spam' if prediction==1 else 'ham',
-        'probability':round(probability,3)
+        'probability':round(probability,3)*100
     }
     
     return jsonify(result)
