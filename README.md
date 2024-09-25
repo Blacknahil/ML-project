@@ -1,66 +1,44 @@
-# Spam Detection Web Application
+# MNIST Classification Project
 
-This project is a simple web application for detecting spam messages using a machine learning model. The application is built using Flask and provides an interactive interface for users to input a message and get a prediction whether it is spam or ham along with the probability of being one.
+This repository contains my implementation of classification models on the MNIST dataset, exploring various feature extraction techniques and analyzing their impact on accuracy. The project aims to evaluate the performance of different machine learning algorithms on the MNIST dataset, leveraging key features to optimize classification accuracy.
 
-## Project Structure Explanation
+## Features and Techniques
 
-- `app.py`: Main Flask application file.
-- `train_model.py`: Script to train the spam detection model and save it.
-- `templates/`: Directory containing HTML templates.
-  - `index.html`: Main HTML file for the user interface.
-- `model.pkl`: Pickle file containing the trained machine learning model.
-- `vectorizer.pkl`: Pickle file containing the vectorizer.
+1. **Raw Pixel Intensity**: Utilizes the pixel values directly as features for classification.
+2. **Histogram of Oriented Gradients (HOG)**: Extracts edge and shape information from images, making it effective for object recognition tasks.
+3. **Principal Component Analysis (PCA)**: Reduces the dimensionality of the image data while preserving essential information, enhancing computational efficiency.
 
-## How It Works?
+## Machine Learning Algorithms
 
-1. **Data Loading and Preprocessing**:
-   - The dataset `SMSSpamCollection` is loaded and preprocessed using `CountVectorizer` to convert text messages into numerical data.
+- **Naive Bayes**: Evaluated with different smoothing parameters to determine the optimal performance.
+- **Logistic Regression**: Tested with various learning rates to find the best accuracy on the MNIST dataset.
 
-2. **Model Training**:
-   - A `MultinomialNB` (Naive Bayes) model is trained on the preprocessed data.
-   - The trained model and vectorizer are saved to disk using `pickle`.
+## Accuracy Analysis
 
-3. **Web Application**:
-   - A Flask web application is created with an endpoint to render the HTML form and an endpoint to handle predictions.
-   - Users can input a message, which is sent to the server for prediction.
-   - The server processes the input through the saved model and returns the prediction and probability.
+The project includes a comprehensive analysis of how different feature extraction methods and model parameters affect classification accuracy. Graphs are provided to compare the performance across different settings.
 
-## Prerequisites
+## Technologies Used
 
-- Python 3.x
-- Flask
-- scikit-learn
-- pandas
+- **Python**: For implementing the models and data processing.
+- **Scikit-learn**: Utilized for machine learning algorithms and feature extraction methods.
+- **Matplotlib/Seaborn**: Used for plotting accuracy analysis graphs.
 
-## Installation
+## How to Run
 
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/Blacknahil/ML-project
-   cd AI
-2. Install the required python packages
-
-    - Flask
-        ```bash
-        pip install flask 
-
-    - scikit-learn
-        ```bash
-        pip install scikit-learn
-    - pandas
-        ```bash
-        pip install pandas
-
-# How to run our program?
-
-1. Go to the correct path which is spam_detection and run app.py
-
     ```bash
-        cd project/spam_detection
-        python3 app.py
+    git clone https://github.com/Blacknahil/ML-project
+    ```
+2. Navigate to the project directory:
+    ```bash
+    cd Assignment-III/Mnist-implementation
+    ```
+3. Run the Python scripts provided to see the implementation and analysis.
+   ```bash
+    python3 main.py
+    ```
 
-2. Open a web browser and enetr the Url printed on the terminal when running the app.py. This url is Usually
-     ```
-        http://127.0.0.1:5000
+## Conclusion
 
-    But to avoid any trouble check out the terminal.
+This project provides a detailed exploration of feature selection techniques and their impact on machine learning models for the MNIST dataset. It highlights the importance of choosing the right features and parameters to achieve optimal classification accuracy.
+
